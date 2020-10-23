@@ -25,7 +25,7 @@ import seedu.address.model.WishfulShrinking;
 import seedu.address.model.consumption.Consumption;
 import seedu.address.model.consumption.ConsumptionContainsKeywordsPredicate;
 import seedu.address.model.recipe.Ingredient;
-import seedu.address.model.recipe.KeywordsContainIngredientPredicate;
+import seedu.address.model.recipe.IngredientContainsKeywordsPredicate;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.EditRecipeDescriptorBuilder;
@@ -418,7 +418,7 @@ public class CommandTestUtil {
 
         Ingredient ingredient = model.getFilteredIngredientList().get(targetIndex.getZeroBased());
         final String[] splitName = ingredient.getValue().split("\\s+");
-        model.updateFilteredIngredientList(new KeywordsContainIngredientPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredIngredientList(new IngredientContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredIngredientList().size());
     }
@@ -444,8 +444,7 @@ public class CommandTestUtil {
                                                         Ingredient ingredientToEdit, Model expectedModel) {
         String editIngredientCommandString = ingredientToEdit.stringify(INDEX_FIRST_INGREDIENT.getOneBased());
         CommandResult expectedCommandResult = new CommandResult(String.format(MESSAGE_GET_EDIT_INGREDIENT_SUCCESS,
-                ingredientToEdit.toString()), false, false, false, false,
-                false, false, true);
+                ingredientToEdit.toString()), CommandResult.ResultType.IS_EDIT_INGREDIENT);
         expectedCommandResult.setCommandBox(editIngredientCommandString);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -457,8 +456,7 @@ public class CommandTestUtil {
                                                         Recipe recipeToEdit, Model expectedModel) {
         String editRecipeCommandString = recipeToEdit.stringify(INDEX_FIRST_INGREDIENT.getOneBased());
         CommandResult expectedCommandResult = new CommandResult(String.format(MESSAGE_GET_EDIT_RECIPE_SUCCESS,
-                recipeToEdit.toString()), false, false, false, false,
-                false, true, false);
+                recipeToEdit.toString()), CommandResult.ResultType.IS_EDIT_RECIPE);
         expectedCommandResult.setCommandBox(editRecipeCommandString);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }

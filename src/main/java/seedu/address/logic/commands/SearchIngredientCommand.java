@@ -38,7 +38,7 @@ public class SearchIngredientCommand extends Command {
         }
         return new CommandResult(
                 String.format(Messages.MESSAGE_INGREDIENT_LISTED_OVERVIEW, model.getFilteredIngredientList().size())
-                + "\n" + builder.toString(), false, false, false, true, false, false, false);
+                + "\n" + builder.toString(), CommandResult.ResultType.IS_SHOW_INGREDIENT);
     }
 
     @Override

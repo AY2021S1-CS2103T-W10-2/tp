@@ -9,28 +9,33 @@ import java.util.Objects;
  */
 public class CommandResult {
 
+    enum ResultType {
+        SHOW_HELP, EXIT, IS_SHOW_RECIPE, IS_SHOW_INGREDIENT, IS_SHOW_CONSUMPTION,
+        IS_EDIT_RECIPE, IS_EDIT_INGREDIENT, NONE
+    }
+
     private final String feedbackToUser;
 
     /** Help information should be shown to the user. */
-    private final boolean showHelp;
+    private boolean showHelp = false;
 
     /** The application should exit. */
-    private final boolean exit;
+    private boolean exit = false;
 
     /** Should show recipe list. */
-    private final boolean isShowRecipe;
+    private boolean isShowRecipe = false;
 
     /** Should show ingredient list. */
-    private final boolean isShowIngredient;
+    private boolean isShowIngredient = false;
 
     /** Should show consumption list. */
-    private final boolean isShowConsumption;
+    private boolean isShowConsumption = false;
 
     /** Should show edit ingredient command. */
-    private final boolean isEditIngredient;
+    private boolean isEditIngredient = false;
 
     /** Should show edit recipe command. */
-    private final boolean isEditRecipe;
+    private boolean isEditRecipe = false;
 
     private String commandBoxText;
 
@@ -38,17 +43,35 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean isShowRecipe, boolean isShowIngredient, boolean isShowConsumption,
-                         boolean isEditRecipe, boolean isEditIngredient) {
+    public CommandResult(String feedbackToUser, ResultType resultType) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.isShowRecipe = isShowRecipe;
-        this.isShowIngredient = isShowIngredient;
-        this.isShowConsumption = isShowConsumption;
-        this.isEditRecipe = isEditRecipe;
-        this.isEditIngredient = isEditIngredient;
+        switch (resultType) {
+        case NONE:
+            break;
+        case SHOW_HELP:
+            this.showHelp = true;
+            break;
+        case EXIT:
+            this.exit = true;
+            break;
+        case IS_SHOW_RECIPE:
+            this.isShowRecipe = true;
+            break;
+        case IS_SHOW_INGREDIENT:
+            this.isShowIngredient = true;
+            break;
+        case IS_SHOW_CONSUMPTION:
+            this.isShowConsumption = true;
+            break;
+        case IS_EDIT_RECIPE:
+            this.isEditRecipe = true;
+            break;
+        case IS_EDIT_INGREDIENT:
+            this.isEditIngredient = true;
+            break;
+        default:
+            break;
+        }
     }
 
     /**
@@ -56,8 +79,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false,
-                false, false, false);
+        this(feedbackToUser, ResultType.NONE);
     }
 
     public String getFeedbackToUser() {

@@ -15,8 +15,7 @@ public class CommandResultTest {
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
         assertTrue(commandResult.equals(new CommandResult("feedback",
-                false, false, false, false,
-                false, false, false)));
+                CommandResult.ResultType.NONE)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -31,12 +30,12 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false,
-                false, false, false, false, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback",
+                CommandResult.ResultType.SHOW_HELP)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true,
-                false, false, false, false, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback",
+                CommandResult.ResultType.EXIT)));
     }
 
     @Test
@@ -50,32 +49,32 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false,
-                false, false, false, false, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback",
+                CommandResult.ResultType.SHOW_HELP).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true,
-                false, false, false, false, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback",
+                CommandResult.ResultType.EXIT).hashCode());
 
         // different recipe value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false,
-                true, false, false, false, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback",
+                CommandResult.ResultType.IS_SHOW_RECIPE).hashCode());
 
         // different ingredient value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false,
-                false, true, false, false, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback",
+                CommandResult.ResultType.IS_SHOW_INGREDIENT).hashCode());
 
         // different consumption value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false,
-                false, false, true, false, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback",
+                CommandResult.ResultType.IS_SHOW_CONSUMPTION).hashCode());
 
         // different isEditRecipe value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false,
-                false, false, false, true, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback",
+                CommandResult.ResultType.IS_EDIT_RECIPE).hashCode());
 
         // different isEditIngredient value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false,
-                false, false, false, false, true).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback",
+                CommandResult.ResultType.IS_EDIT_INGREDIENT).hashCode());
 
     }
 }

@@ -38,8 +38,7 @@ public class GetEditRecipeCommand extends Command {
         Recipe recipeToEdit = lastShownList.get(toEdit.getZeroBased());
         int recipePositionToEdit = lastShownList.indexOf(recipeToEdit) + 1;
         CommandResult commandResult = new CommandResult(String.format(MESSAGE_GET_EDIT_RECIPE_SUCCESS,
-                recipeToEdit.toString()), false, false, false,
-                false, false, true, false);
+                recipeToEdit.toString()), CommandResult.ResultType.IS_EDIT_RECIPE);
         commandResult.setCommandBox(recipeToEdit.stringify(recipePositionToEdit));
         return commandResult;
     }

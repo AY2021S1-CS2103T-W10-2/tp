@@ -29,7 +29,7 @@ public class ListConsumptionCommand extends Command {
         }
         builder.append("Total Calories: ");
         builder.append(totalCalories + " cal");
-        return new CommandResult(MESSAGE_SUCCESS + builder.toString(), false, false,
-                false, false, true , false, false);
+        return new CommandResult(MESSAGE_SUCCESS + builder.toString(),
+                CommandResult.ResultType.IS_SHOW_CONSUMPTION);
     }
 }
