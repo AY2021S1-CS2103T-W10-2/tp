@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIngredients.POTATO;
-import static seedu.address.testutil.TypicalIngredients.POTATO1;
 import static seedu.address.testutil.TypicalRecipes.SANDWICH;
 import static seedu.address.testutil.TypicalRecipes.SANDWICH_DIFF_QTY;
 import static seedu.address.testutil.TypicalRecipes.getTypicalWishfulShrinking;
@@ -23,7 +21,6 @@ import seedu.address.model.consumption.Consumption;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.recipe.exceptions.DuplicateRecipeException;
-import seedu.address.testutil.IngredientBuilder;
 import seedu.address.testutil.RecipeBuilder;
 
 public class WishfulShrinkingTest {
@@ -120,36 +117,6 @@ public class WishfulShrinkingTest {
     @Test
     public void getRecipeList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> wishfulShrinking.getRecipeList().remove(0));
-    }
-
-
-    @Test
-    public void hasIngredient_nullIngredient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> wishfulShrinking.hasIngredient(null));
-    }
-
-    @Test
-    public void hasIngredient_ingredientNotInWishfulShrinking_returnsFalse() {
-        assertFalse(wishfulShrinking.hasIngredient(POTATO));
-        assertFalse(wishfulShrinking.hasIngredient(POTATO1));
-    }
-
-    @Test
-    public void hasIngredient_recipeInWishfulShrinking_returnsTrue() {
-        wishfulShrinking.addIngredient(POTATO);
-        assertTrue(wishfulShrinking.hasIngredient(POTATO));
-        assertFalse(wishfulShrinking.hasIngredient(POTATO1));
-    }
-
-    @Test
-    public void hasIngredient_recipeWithSameIdentityFieldsInWishfulShrinking_returnsTrue() {
-        wishfulShrinking.addIngredient(POTATO);
-        Ingredient editedIngredient = new IngredientBuilder(POTATO)
-                .build();
-        Ingredient editedIngredient1 = new IngredientBuilder(POTATO1)
-                .build();
-        assertTrue(wishfulShrinking.hasIngredient(editedIngredient));
-        assertFalse(wishfulShrinking.hasIngredient(editedIngredient1));
     }
 
     /**

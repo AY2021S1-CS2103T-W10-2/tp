@@ -43,11 +43,6 @@ public class IngredientTest {
         assertFalse(Ingredient.isValidIngredient(new Ingredient("fishcake", "2 cups!"))); // empty name
         assertFalse(Ingredient.isValidIngredient(new Ingredient("fishcake",
                 "0.0000000000000000000000000000000000000000000005 cups"))); // empty name
-        assertFalse(Ingredient.isValidIngredient(new Ingredient("fishcake",
-                "1.0/12 cups"))); // presence of 1 decimal point and 1 forward slash
-        assertFalse(Ingredient.isValidIngredient(new Ingredient("fishcake",
-                "1.0.12 cups"))); // More than one occurence of decimal point
-        assertFalse(Ingredient.isValidIngredient(new Ingredient("fishcake",
-                "1/0/12 cups"))); // More than one occurence of forward slash
+
     }
 }

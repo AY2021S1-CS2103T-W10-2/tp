@@ -69,13 +69,9 @@ public class AddIngredientCommandTest {
         ArrayList<Ingredient> aliceIngredients = new ArrayList<>();
         aliceIngredients.add(alice);
         ArrayList<Ingredient> bobIngredients = new ArrayList<>();
-        bobIngredients.add(bob);
-        ArrayList<Ingredient> combineIngredients = new ArrayList<>();
-        combineIngredients.add(alice);
-        combineIngredients.add(bob);
+        aliceIngredients.add(bob);
         AddIngredientCommand addAliceCommand = new AddIngredientCommand(aliceIngredients);
         AddIngredientCommand addBobCommand = new AddIngredientCommand(bobIngredients);
-        AddIngredientCommand addCombineCommand = new AddIngredientCommand(combineIngredients);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
@@ -92,12 +88,6 @@ public class AddIngredientCommandTest {
 
         // different ingredient -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
-
-        // different ingredient -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
-
-        // different number of ingredient -> returns false
-        assertFalse(addCombineCommand.equals(addBobCommand));
     }
 
     /**

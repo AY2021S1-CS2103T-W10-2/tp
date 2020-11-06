@@ -5,9 +5,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalConsumption.EAT_MARGARITAS;
 import static seedu.address.testutil.TypicalConsumption.EAT_SANDWICH;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.consumption.exceptions.ConsumptionNotFoundException;
@@ -41,21 +38,6 @@ public class ConsumptionListTest {
         consumptionList.eat(EAT_SANDWICH);
         consumptionList.remove(EAT_SANDWICH);
         ConsumptionList expectedConsumptionList = new ConsumptionList();
-        assertEquals(expectedConsumptionList, consumptionList);
-    }
-
-    @Test
-    public void setConsumptions_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> consumptionList.setConsumptions((List<Consumption>) null));
-    }
-
-    @Test
-    public void setConsumptions_list_replacesOwnListWithProvidedList() {
-        consumptionList.eat(EAT_SANDWICH);
-        List<Consumption> consumeList = Collections.singletonList(EAT_MARGARITAS);
-        consumptionList.setConsumptions(consumeList);
-        ConsumptionList expectedConsumptionList = new ConsumptionList();
-        expectedConsumptionList.eat(EAT_MARGARITAS);
         assertEquals(expectedConsumptionList, consumptionList);
     }
 
