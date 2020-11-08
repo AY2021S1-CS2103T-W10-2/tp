@@ -44,12 +44,12 @@ title: Developer Guide
     - [3.4. Delete Features](#34-delete-features)
         * [3.4.1 Implementation](#341-implementation)
         * [3.4.2 Design Consideration - **Delete Recipe**](#342-design-consideration-delete-recipe)
-            * [Aspect 1: Concern while adding a new feature](#3421-aspect-1)
-            * [Aspect 2: When the user deletes a recipe from the recipe list, should it also be deleted from the consumption list (if present)](#3422-aspect-2)
+            * [Aspect: Concern while adding a new feature](#3421-aspect)
         * [3.4.3 Design Consideration - **Delete Ingredient**](#343-design-consideration-delete-ingredient)
             * [Aspect: Concern while adding a new feature](#3431-aspect)
         * [3.4.4 Design Consideration - **Delete Consumption**](#344-design-consideration-delete-consumption)
-            * [Aspect: Concern while adding a new feature](#3441-aspect)
+            * [Aspect 1: Concern while adding a new feature](#3441-aspect-1)
+	    	    * [Aspect 2: When the user deletes a recipe from the recipe list, should it also be deleted from the consumption list (if present)](#3442-aspect-2)
 	    <br><br>
     - [3.5. Edit Features](#35-edit-features)
         * [3.5.1 Implementation](#351-implementation)
@@ -94,9 +94,7 @@ title: Developer Guide
             * [Aspect: Concern while adding a new feature](#31031-aspect)
         * [3.10.4 Design Consideration - **Clear Consumptions**](#3104-design-consideration-clear-consumption)
             * [Aspect: Concern while adding a new feature](#31041-aspect)
-        <br><br>
 4. [Documentation, Logging, Testing, Configuration, Dev-ops](#4-documentation-logging-testing-configuration-dev-ops)
-<br><br>
 5. [Appendix A: Requirements](#5-appendix-requirements)
     - [5.1 Product Scope](#51-product-scope)
     - [5.2 User Stories](#52-user-stories)
@@ -107,36 +105,14 @@ title: Developer Guide
         * [5.3.4 Other Use Cases](#534-other-use-cases) 
     - [5.4 Non-Functional Requirements](#54-non-function-requirements)
     - [5.5 Glossary](#55-glossary)
-    <br><br>
 6. [Appendix B: Instructions for Manual Testing](#6-appendix-instructions-for-manual-testing)
     - [6.1 Launch and Shutdown](#61-launch-and-shutdown)
-    - [6.2 Adding a recipe](#62-adding-a-recipe)
-    - [6.3 Adding an ingredient](#63-adding-an-ingredient)
-    - [6.4 Eating a recipe](#64-eating-a-recipe)
-    - [6.5 Listing recipes](#65-listing-recipes)
-    - [6.6 Listing ingredients](#66-listing-ingredients)
-    - [6.7 Listing consumption](#67-listing-consumption)
-    - [6.8 Deleting a recipe](#68-deleting-a-recipe)
-    - [6.9 Deleting an ingredient](#69-deleting-an-ingredient)
-    - [6.10 Deleting an eaten recipe](#610-deleting-an-eaten-recipe)
-    - [6.11 Getting edit recipe](#611-getting-edit-recipe)
-    - [6.12 Editing a recipe](#612-editing-a-recipe)
-    - [6.13 Getting edit ingredient](#613-getting-edit-ingredient)
-    - [6.14 Editing an ingredient](#614-editing-an-ingredient)
-    - [6.15 Selecting a recipe](#615-selecting-a-recipe)
-    - [6.16 Searching for recipes](#616-searching-for-recipes)
-    - [6.17 Searching for ingredients](#617-searching-for-ingredients)
-    - [6.18 Recommend](#618-recommend)
-    - [6.19 Clearing recipes](#619-clearing-recipes)
-    - [6.20 Clearing ingredients](#620-clearing-ingredients)
-    - [6.21 Clearing eaten recipes](#621-clearing-eaten-recipes)
-    - [6.22 Saving data](#622-saving-data)
-    <br><br>
+    - [6.2 Deleting a Recipe](#62-deleting-a-recipe)
+    - [6.3 Saving Data](#63-saving-data)
 7. [Appendix C: Model Components](#7-model-component)
     - [7.1 Recipe](#71-recipe)
     - [7.2 Ingredient](#72-ingredient)
     - [7.3 Consumption](#73-consumption)
-    <br><br>
 8. [Appendix E: Effort](#8-effort)
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1399,7 +1375,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained. <br><br>
 
-### 6.2 Adding a recipe <a id="62-adding-a-recipe"></a>
+### 6.2 Adding a recipe
 
 1. Adding a recipe with all required fields into Wishful Shrinking’s recipe list.
 
@@ -1415,7 +1391,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as the non-optional field instruction is omitted. The message will show the correct input format of the `addR` command, and your command in the command box will turn red. <br><br>
        
 
-### 6.3 Adding an ingredient <a id="63-adding-an-ingredient"></a>
+### 6.3 Adding an ingredient
 
 1. Adding an ingredient into Wishful Shrinking’s ingredient list.
 
@@ -1431,7 +1407,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as the quantity is invalid. The message will show the correct input format of the `addF` command, and your command in the command box will turn red. <br><br>
        
        
-### 6.4 Eating a recipe <a id="64-eating-a-recipe"></a>
+### 6.4 Eating a recipe
 
 1. Eating a recipe at a specific index in the recipe list and adding it into Wishful Shrinking’s consumption list.
 
@@ -1447,7 +1423,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous test case. <br><br>
 
 
-### 6.5 Listing Recipes <a id="65-listing-recipes"></a>
+### 6.5 Listing Recipes
 
 1. Listing out all the recipes in Wishful Shrinking’s recipe list.
 
@@ -1460,7 +1436,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as `recipes` does not have any arguments. The message will show the correct input format of the `recipes` command, and your command in the command box will turn red. <br><br>
 
 
-### 6.6 Listing Ingredients <a id="66-listing-ingredients"></a>
+### 6.6 Listing Ingredients
 
 1. Listing out all the ingredients in Wishful Shrinking’s ingredient list.
 
@@ -1473,7 +1449,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as `fridge` does not have any arguments. The message will show the correct input format of the `fridge` command, and your command in the command box will turn red. <br><br>
 
 
-### 6.7 Listing Consumption <a id="67-listing-consumption"></a>
+### 6.7 Listing Consumption
 
 1. Listing out all the recipes eaten in Wishful Shrinking’s consumption list.
 
@@ -1484,111 +1460,9 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `calories x` (where x is any additional arguments) <br>
        Expected: An error message will be shown, as `calories` does not have any arguments. The message will show the correct input format of the `calories` command, and your command in the command box will turn red. <br><br>
-        
-### 6.8 Deleting a recipe <a id="68-deleting-a-recipe"></a>
-
-1. Deleting a recipe at a specific index while all recipes are being shown in the Wishful Shrinking's recipe list.
-
-    1. Prerequisites: List all recipes using the `recipes` command. Wishful Shrinking’s recipe list is not empty.
-    
-    1. Test case: `deleteR 1` <br>
-       Expected: Recipe with index 1 will be deleted from the Wishful Shrinking's recipe list. The result box will show details of the deleted recipe.
-       
-    1. Test case: `deleteR 0` <br>
-       Expected: An error message will be shown, as the recipe with index 0 is not present. The message will show the correct input format of the `deleteR` command, and your command in the command box will turn red.
-       
-    1. Other incorrect `deleteR` commands to try: `deleteR`, `deleteR x`, … (where x is larger than the recipe list size or x is not a positive integer) <br>
-       Expected: Similar to previous test case. <br><br>
-       
-     
-### 6.9 Deleting an ingredient <a id="69-deleting-an-ingredient"></a>
-
-1. Deleting an ingredient at a specific index while all recipes are being shown in the Wishful Shrinking's ingredient list.
-
-    1. Prerequisites: List all recipes using the `fridge` command. Wishful Shrinking’s ingredient list is not empty.
-    
-    1. Test case: `deleteF 1` <br>
-       Expected: Ingredient with index 1 will be deleted from the Wishful Shrinking's ingredient list. The result box will show details of the deleted ingredient.
-       
-    1. Test case: `deleteF 0` <br>
-       Expected: An error message will be shown, as the ingredient with index 0 is not present. The message will show the correct input format of the `deleteF` command, and your command in the command box will turn red.
-       
-    1. Other incorrect `deleteF` commands to try: `deleteF`, `deleteF x`, … (where x is larger than the ingredient list size or x is not a positive integer) <br>
-       Expected: Similar to previous test case. <br><br>  
-       
-       
-### 6.10 Deleting an eaten recipe <a id="610-deleting-an-eaten-recipe"></a>
-
-1. Deleting an eaten recipe at a specific index while all eaten recipes are being shown in the Wishful Shrinking's consumption list.
-
-    1. Prerequisites: List all eaten recipes using the `calories` command. Wishful Shrinking’s consumption list is not empty.
-    
-    1. Test case: `deleteC 1` <br>
-       Expected: Eaten recipe with index 1 will be deleted from the Wishful Shrinking's consumption list. The result box will show details of the deleted eaten recipe.
-       
-    1. Test case: `deleteC 0` <br>
-       Expected: An error message will be shown, as the recipe with index 0 is not present. The message will show the correct input format of the `deleteC` command, and your command in the command box will turn red.
-       
-    1. Other incorrect `deleteC` commands to try: `deleteC`, `deleteC x`, … (where x is larger than the consumption list size or x is not a positive integer) <br>
-       Expected: Similar to previous test case. <br><br>
-
-### 6.11 Getting edit recipe <a id="611-getting-edit-recipe"></a>
-
-1. Getting details of recipe at a specific index before edit.
-
-    1. Prerequisites: Wishful Shrinking’s recipe list is not empty.
-    
-    1. Test case: `editR 1` <br>
-       Expected: The result box will show all the details of the first recipe. <br><br>
-       
-### 6.12 Editing a recipe <a id="612-editing-a-recipe"></a>
-
-1. Editing some fields of a recipe in the Wishful Shrinking's recipe list at a specific index. 
-
-    1. Prerequisites: Wishful Shrinking’s recipe list is not empty.
-    
-    1. Test case: `editR` 1 n/bread i/flour <br>
-       Expected: The fields specified for the first recipe in the recipe list will be updated with bread for its name and flour for its ingredient. The result box will show the newly updated details of the recipe.
-       
-    1. Test case: `editR 1` n/bread i/flour img/images/healthy1.jpg t/healthy <br>
-       Expected: The fields specified for the first recipe in the recipe list will be updated with bread for its name and flour for its ingredient. The result box will show the newly updated details of the recipe. This test case differs with the previous test case in that it has the optional fields image and tags, which will also be updated with the new values.                                                                                                                                                                                                                                          
-       
-    1. Test case: `editR 1 x` (same name and quantity of the ingredient in fridge) <br>
-       Expected: An error message will be shown, as it is the same recipe. The result box will show that no edits are made. Your command in the command box will turn red.
-
-    1. Other incorrect `editR` commands to try: `editR` (no fields specified) <br>
-       Expected: Similar to previous test case. <br><br>
-    
-### 6.13 Getting edit ingredient <a id="613-getting-edit-ingredient"></a>
-
-1. Getting details of ingredient at a specific index before edit.
-
-    1. Prerequisites: Wishful Shrinking’s ingredient list is not empty.
-    
-    1. Test case: `editF 1` <br>
-       Expected: The result box will show all the details of the first ingredient. <br><br>
        
 
-### 6.14 Editing an ingredient <a id="614-editing-an-ingredient"></a>
-
-1. Editing some fields of an ingredient in the Wishful Shrinking's ingredient list at a specific index. 
-
-    1. Prerequisites: Wishful Shrinking’s ingredient list is not empty.
-    
-    1. Test case: `editF` 1 i/flour - 10g <br>
-       Expected: The name and quantity of the ingredient will be updated. The result box will show the newly updated details of the ingredient.
-       
-    1. Test case: `editF 1` <br>
-       Expected: An error message will be shown, as the eaten recipe with index 0 is not present. The message will show the correct input format of the editF command, and your command in the command box will turn red.                                                                                                                                                                                                                      
-       
-    1. Test case: `editF 1 x` (same name and quantity of the ingredient in fridge) <br>
-       Expected: An error message will be shown, as it is the same ingredient. The result box will show that no edits are made. Your command in the command box will turn red.
-
-    1. Other incorrect `editF` commands to try: `editF` (no fields specified)
-       Expected: Similar to previous test case. <br><br>
-       
-       
-### 6.15 Selecting a recipe <a id="615-selecting-a-recipe"></a>
+### 6.15 Selecting a recipe
 
 1. Selecting a recipe at a specific index in the recipe list to view its full information.
 
@@ -1604,7 +1478,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous test case. <br><br>
 
 
-### 6.16 Searching for Recipes <a id="616-searching-for-recipes"></a>
+### 6.16 Searching for Recipes
 
 1. Searching for recipes in Wishful Shrinking’s recipe list by their ingredients, name or tags.
 
@@ -1620,7 +1494,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as `searchR` does not search by the calorie field. The message will show the correct input format of the `searchR` command, and your command in the command box will turn red. <br><br>
        
        
-### 6.17 Searching for Ingredients <a id="617-searching-for-ingredients"></a>
+### 6.17 Searching for Ingredients
 
 1. Searching for ingredients in Wishful Shrinking’s ingredient list by names.
 
@@ -1633,7 +1507,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as `searchF` takes in keywords to search for. The message will show the correct input format of the `searchF` command, and your command in the command box will turn red. <br><br>
       
       
-### 6.18 Recommend <a id="618-recommend"></a>
+### 6.18 Recommend
 
 1. Listing out all the recipes in Wishful Shrinking’s recipe list whose ingredients are all in the fridge.
 
@@ -1646,46 +1520,24 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as `recommend` does not have any arguments. The message will show the correct input format of the `recommend` command, and your command in the command box will turn red. <br><br>
 
 
-### 6.19 Clearing recipes <a id="619-clearing-recipes"></a>
 
-1. Clear all recipes from the Wishful Shrinking’s recipe list.
+### 6.2 Deleting a Recipe <a id="62-deleting-a-recipe"></a>
 
-    1. Prerequisites: Wishful Shrinking’s recipe list is not empty.
-    
-    1. Test case: `clearR` <br>
-       Expected: All recipes are cleared from the Wishful Shrinking's recipe list. The result box will show a message that indicates that all recipes are cleared.
-       
-    1. Test case: `clearR x` (where x is any additional arguments) <br>
-       Expected: An error message will be shown, as the `clearR` does not have any arguments. The message will show the correct input format of the `clearR` command, and your command in the command box will turn red. <br><br>
+1. Deleting a recipe while all recipes are being shown
 
+   1. Prerequisites: List all recipes using the `recipes` command. Multiple recipes in the list.
 
-### 6.20 Clearing ingredients <a id="620-clearing-ingredients"></a>
+   1. Test case: `deleteR 1`<br>
+      Expected: First recipe is deleted from the list. Details of the deleted recipe shown in the status message. Timestamp in the status bar is updated.
 
-1. Clear all ingredients from the Wishful Shrinking’s ingredient list.
+   1. Test case: `deleteR 0`<br>
+      Expected: No recipe is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Prerequisites: Wishful Shrinking’s ingredient list is not empty.
-    
-    1. Test case: `clearF` <br>
-       Expected: All ingredients are cleared from the Wishful Shrinking's ingredient list. The result box will show a message that indicates that all ingredients are cleared.
-       
-    1. Test case: `clearF x` (where x is any additional arguments) <br>
-       Expected: An error message will be shown, as the `clearF` does not have any arguments. The message will show the correct input format of the `clearF` command, and your command in the command box will turn red. <br><br>
+   1. Other incorrect delete commands to try: `deleteR`, `deleteR x`, `...` (where x is larger than the recipe list size)<br>
+      Expected: Similar to previous. <br><br>
 
 
-### 6.21 Clearing eaten recipes <a id="621-clearing-eaten-recipes"></a>
-
-1. Clear all eaten recipes from the Wishful Shrinking’s consumption list.
-
-    1. Prerequisites: Wishful Shrinking’s consumption list is not empty.
-    
-    1. Test case: `clearC` <br>
-       Expected: All eaten recipes are cleared from the Wishful Shrinking's consumption list. The result box will show a message that indicates that all eaten recipes are cleared.
-       
-    1. Test case: `clearR x` (where x is any additional arguments) <br>
-       Expected: An error message will be shown, as the `clearC` does not have any arguments. The message will show the correct input format of the `clearC` command, and your command in the command box will turn red. <br><br>
-
-
-### 6.22 Saving Data <a id="622-saving-data"></a>
+### 6.3 Saving Data <a id="63-saving-data"></a>
 
 1. Dealing with missing/corrupted data files
 
